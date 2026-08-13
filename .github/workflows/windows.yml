@@ -81,9 +81,11 @@ jobs:
             Pop-Location
           }
           # Assemble a clean include + lib layout for FindQwt.cmake
+          $ErrorActionPreference = 'Stop'
           $inc = "$qwtBase\install\include"
           $libd = "$qwtBase\install\lib"
-          New-Item -ItemType Directory -Force -Path $inc, $libd | Out-Null
+          [System.IO.Directory]::CreateDirectory($inc) | Out-Null
+          [System.IO.Directory]::CreateDirectory($libd) | Out-Null
           Copy-Item "$qwtBase\src\*.h" $inc -Force
           Copy-Item "$qwtBase\lib\qwt.dll", "$qwtBase\lib\qwt.lib" $libd -Force
           if (-not (Test-Path "$inc\qwt_plot.h") -or -not (Test-Path "$libd\qwt.dll") -or -not (Test-Path "$libd\qwt.lib")) {
