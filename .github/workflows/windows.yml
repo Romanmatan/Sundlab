@@ -35,6 +35,36 @@ jobs:
       - name: Set up MSVC toolchain
         uses: ilammy/msvc-dev-cmd@v1
 
+      - name: Patch Qt headers for modern MSVC STL (stdext removal)
+        shell: pwsh
+        run: |
+          $h = "$env:QT_ROOT_DIR\include\QtCore\qcompilerdetection.h"
+          $c = Get-Content $h -Raw
+          $checkedOld = '#  define QT_MAKE_CHECKED_ARRAY_ITERATOR(x, N) stdext::make_checked_array_iterator(x, size_t(N)) // Since _MSC_VER >= 1500'
+          $uncheckedOld = '#  define QT_MAKE_UNCHECKED_ARRAY_ITERATOR(x) stdext::make_unchecked_array_iterator(x) // Since _MSC_VER >= 1800'
+          $checkedNew = @'
+#  if defined(_ITERATOR_DEBUG_LEVEL) && _ITERATOR_DEBUG_LEVEL
+#    define QT_MAKE_CHECKED_ARRAY_ITERATOR(x, N) stdext::make_checked_array_iterator(x, size_t(N)) // Since _MSC_VER >= 1500
+#  else
+#    define QT_MAKE_CHECKED_ARRAY_ITERATOR(x, N) (x)
+#  endif
+'@
+          $uncheckedNew = @'
+#  if defined(_ITERATOR_DEBUG_LEVEL) && _ITERATOR_DEBUG_LEVEL
+#    define QT_MAKE_UNCHECKED_ARRAY_ITERATOR(x) stdext::make_unchecked_array_iterator(x) // Since _MSC_VER >= 1800
+#  else
+#    define QT_MAKE_UNCHECKED_ARRAY_ITERATOR(x) (x)
+#  endif
+'@
+          if ($c.Contains($checkedOld)) {
+            $c = $c.Replace($checkedOld, $checkedNew)
+            $c = $c.Replace($uncheckedOld, $uncheckedNew)
+            [System.IO.File]::WriteAllText($h, $c)
+            Write-Host "Patched qcompilerdetection.h for stdext removal"
+          } else {
+            Write-Host "Header not in expected state; skipping patch"
+          }
+
       - name: Install OpenAL (openal-soft) via vcpkg
         shell: pwsh
         run: |
