@@ -42,20 +42,17 @@ jobs:
           $c = Get-Content $h -Raw
           $checkedOld = '#  define QT_MAKE_CHECKED_ARRAY_ITERATOR(x, N) stdext::make_checked_array_iterator(x, size_t(N)) // Since _MSC_VER >= 1500'
           $uncheckedOld = '#  define QT_MAKE_UNCHECKED_ARRAY_ITERATOR(x) stdext::make_unchecked_array_iterator(x) // Since _MSC_VER >= 1800'
-          $checkedNew = @'
-#  if defined(_ITERATOR_DEBUG_LEVEL) && _ITERATOR_DEBUG_LEVEL
-#    define QT_MAKE_CHECKED_ARRAY_ITERATOR(x, N) stdext::make_checked_array_iterator(x, size_t(N)) // Since _MSC_VER >= 1500
-#  else
-#    define QT_MAKE_CHECKED_ARRAY_ITERATOR(x, N) (x)
-#  endif
-'@
-          $uncheckedNew = @'
-#  if defined(_ITERATOR_DEBUG_LEVEL) && _ITERATOR_DEBUG_LEVEL
-#    define QT_MAKE_UNCHECKED_ARRAY_ITERATOR(x) stdext::make_unchecked_array_iterator(x) // Since _MSC_VER >= 1800
-#  else
-#    define QT_MAKE_UNCHECKED_ARRAY_ITERATOR(x) (x)
-#  endif
-'@
+          $nl = [Environment]::NewLine
+          $checkedNew = '#  if defined(_ITERATOR_DEBUG_LEVEL) && _ITERATOR_DEBUG_LEVEL' + $nl `
+            + '#    define QT_MAKE_CHECKED_ARRAY_ITERATOR(x, N) stdext::make_checked_array_iterator(x, size_t(N)) // Since _MSC_VER >= 1500' + $nl `
+            + '#  else' + $nl `
+            + '#    define QT_MAKE_CHECKED_ARRAY_ITERATOR(x, N) (x)' + $nl `
+            + '#  endif'
+          $uncheckedNew = '#  if defined(_ITERATOR_DEBUG_LEVEL) && _ITERATOR_DEBUG_LEVEL' + $nl `
+            + '#    define QT_MAKE_UNCHECKED_ARRAY_ITERATOR(x) stdext::make_unchecked_array_iterator(x) // Since _MSC_VER >= 1800' + $nl `
+            + '#  else' + $nl `
+            + '#    define QT_MAKE_UNCHECKED_ARRAY_ITERATOR(x) (x)' + $nl `
+            + '#  endif'
           if ($c.Contains($checkedOld)) {
             $c = $c.Replace($checkedOld, $checkedNew)
             $c = $c.Replace($uncheckedOld, $uncheckedNew)
