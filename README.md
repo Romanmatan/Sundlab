@@ -62,6 +62,8 @@ cmake --build build --config Release
 ```bat
 C:\Qt\5.13.0\msvc2015_64\bin\windeployqt.exe --release build\Release\Soundlab.exe
 copy /Y C:\Qwt-6.1.5\lib\qwt.dll build\Release\
+:: qwt.dll depends on Qt5OpenGL, which windeployqt does not resolve via the exe alone
+copy /Y C:\Qt\5.13.0\msvc2015_64\bin\Qt5OpenGL.dll build\Release\
 ```
 
 ## Структура проекта

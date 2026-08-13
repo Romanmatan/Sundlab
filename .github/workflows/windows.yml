@@ -60,6 +60,8 @@ jobs:
           & $windeploy --release $exeDir\Soundlab.exe
           Copy-Item "C:\vcpkg\installed\x64-windows\bin\qwt.dll" $exeDir -Force
           Copy-Item "C:\vcpkg\installed\x64-windows\bin\OpenAL32.dll" $exeDir -Force
+          # qwt.dll links Qt5OpenGL, which windeployqt does not resolve via the exe only.
+          Copy-Item "${{ steps.install-qt.outputs.qtpath }}\bin\Qt5OpenGL.dll" $exeDir -Force
 
       - name: Smoke test (launch the executable)
         shell: pwsh
