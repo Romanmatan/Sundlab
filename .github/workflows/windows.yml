@@ -19,7 +19,6 @@ jobs:
     env:
       BUILD_DIR: build
       QT_ARCH: win64_msvc2019_64
-      QWT_VERSION: 6.2.0
 
     steps:
       - name: Checkout
@@ -45,25 +44,27 @@ jobs:
       - name: Build Qwt from source (against installed Qt)
         shell: pwsh
         run: |
-          $qwtSrc = "$env:RUNNER_TEMP\qwt"
-          $zip = "$env:RUNNER_TEMP\qwt.zip"
-          Invoke-WebRequest -Uri "https://downloads.sourceforge.net/project/qwt/qwt/$env:QWT_VERSION/qwt-$env:QWT_VERSION.zip" -OutFile $zip
-          Expand-Archive -Path $zip -DestinationPath $qwtSrc -Force
-          $src = "$qwtSrc\qwt-$env:QWT_VERSION"
-          Push-Location $src
+          $qwtBase = "$env:RUNNER_TEMP\qwt"
+          git clone --depth 1 --branch v6.3.0 https://git.code.sf.net/p/qwt/git "$qwtBase"
+          Push-Location "$qwtBase\src"
           try {
-            & "$env:QT_ROOT_DIR\bin\qmake.exe" qwt.pro
-            nmake /nologo
+            & "$env:QT_ROOT_DIR\bin\qmake.exe" src.pro
+            nmake /nologo release
           } finally {
             Pop-Location
           }
-          Write-Host "Qwt built at $src"
-          if (-not (Test-Path "$src\lib\qwt.dll") -or -not (Test-Path "$src\lib\qwt.lib") -or -not (Test-Path "$src\include\qwt_plot.h")) {
+          # Assemble a clean include + lib layout for FindQwt.cmake
+          $inc = "$qwtBase\install\include"
+          $libd = "$qwtBase\install\lib"
+          New-Item -ItemType Directory -Force -Path $inc, $libd | Out-Null
+          Copy-Item "$qwtBase\src\*.h" $inc -Force
+          Copy-Item "$qwtBase\lib\qwt.dll", "$qwtBase\lib\qwt.lib" $libd -Force
+          if (-not (Test-Path "$inc\qwt_plot.h") -or -not (Test-Path "$libd\qwt.dll") -or -not (Test-Path "$libd\qwt.lib")) {
             Write-Error "Qwt build did not produce the expected artifacts"
             exit 1
           }
-          # Remember the location for later steps
-          "QWT_SRC=$src" | Out-File -FilePath "$env:GITHUB_ENV" -Append
+          Write-Host "Qwt installed to $qwtBase\install"
+          "QWT_DIR=$qwtBase\install" | Out-File -FilePath "$env:GITHUB_ENV" -Append
 
       - name: Configure (CMake)
         shell: pwsh
@@ -71,7 +72,7 @@ jobs:
           cmake -S . -B ${{ env.BUILD_DIR }} `
             -DCMAKE_BUILD_TYPE=${{ matrix.config }} `
             -DCMAKE_PREFIX_PATH="$env:QT_ROOT_DIR" `
-            -DQWT_DIR="$env:QWT_SRC" `
+            -DQWT_DIR="$env:QWT_DIR" `
             -DOPENALDIR="C:\vcpkg\installed\x64-windows"
 
       - name: Build
@@ -85,7 +86,7 @@ jobs:
           $exeDir = "${{ env.BUILD_DIR }}\${{ matrix.config }}"
           $windeploy = "$env:QT_ROOT_DIR\bin\windeployqt.exe"
           & $windeploy --release $exeDir\Soundlab.exe
-          Copy-Item "$env:QWT_SRC\lib\qwt.dll" $exeDir -Force
+          Copy-Item "$env:QWT_DIR\lib\qwt.dll" $exeDir -Force
           Copy-Item "C:\vcpkg\installed\x64-windows\bin\OpenAL32.dll" $exeDir -Force
           # qwt.dll links Qt5OpenGL, which windeployqt does not resolve via the exe only.
           Copy-Item "$env:QT_ROOT_DIR\bin\Qt5OpenGL.dll" $exeDir -Force
