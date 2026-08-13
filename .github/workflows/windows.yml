@@ -1,0 +1,81 @@
+name: Windows CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [ Release ]
+
+    env:
+      BUILD_DIR: build
+      QT_ARCH: win64_msvc2019_64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Qt
+        id: install-qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: 5.15.2
+          arch: ${{ env.QT_ARCH }}
+          cache: true
+
+      - name: Install dependencies (Qwt, OpenAL) via vcpkg
+        shell: pwsh
+        run: |
+          vcpkg install qwt openal-soft --triplet x64-windows
+          vcpkg integrate install
+
+      - name: Configure (CMake)
+        shell: pwsh
+        run: |
+          cmake -S . -B ${{ env.BUILD_DIR }} `
+            -DCMAKE_BUILD_TYPE=${{ matrix.config }} `
+            -DCMAKE_PREFIX_PATH="${{ steps.install-qt.outputs.qtpath }}" `
+            -DQWT_DIR="C:\vcpkg\installed\x64-windows" `
+            -DOPENALDIR="C:\vcpkg\installed\x64-windows"
+
+      - name: Build
+        shell: pwsh
+        run: |
+          cmake --build ${{ env.BUILD_DIR }} --config ${{ matrix.config }}
+
+      - name: Deploy runtime (windeployqt) and bundle Qwt / OpenAL
+        shell: pwsh
+        run: |
+          $exeDir = "${{ env.BUILD_DIR }}\${{ matrix.config }}"
+          $windeploy = "${{ steps.install-qt.outputs.qtpath }}\bin\windeployqt.exe"
+          & $windeploy --release $exeDir\Soundlab.exe
+          Copy-Item "C:\vcpkg\installed\x64-windows\bin\qwt.dll" $exeDir -Force
+          Copy-Item "C:\vcpkg\installed\x64-windows\bin\OpenAL32.dll" $exeDir -Force
+
+      - name: Smoke test (launch the executable)
+        shell: pwsh
+        run: |
+          $exe = "${{ env.BUILD_DIR }}\${{ matrix.config }}\Soundlab.exe"
+          $p = Start-Process -FilePath $exe -WorkingDirectory (Split-Path $exe) -PassThru
+          Start-Sleep -Seconds 8
+          if ($p.HasExited) {
+            Write-Error "Application exited early with code $($p.ExitCode)"
+            exit 1
+          }
+          Stop-Process -Id $p.Id -Force
+          Write-Host "Application launched successfully."
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Soundlab-${{ matrix.config }}
+          path: ${{ env.BUILD_DIR }}\${{ matrix.config }}
