@@ -52,7 +52,7 @@ jobs:
           $src = "$qwtSrc\qwt-$env:QWT_VERSION"
           Push-Location $src
           try {
-            & "${{ steps.install-qt.outputs.qtpath }}\bin\qmake.exe" qwt.pro
+            & "$env:QT_ROOT_DIR\bin\qmake.exe" qwt.pro
             nmake /nologo
           } finally {
             Pop-Location
@@ -70,7 +70,7 @@ jobs:
         run: |
           cmake -S . -B ${{ env.BUILD_DIR }} `
             -DCMAKE_BUILD_TYPE=${{ matrix.config }} `
-            -DCMAKE_PREFIX_PATH="${{ steps.install-qt.outputs.qtpath }}" `
+            -DCMAKE_PREFIX_PATH="$env:QT_ROOT_DIR" `
             -DQWT_DIR="$env:QWT_SRC" `
             -DOPENALDIR="C:\vcpkg\installed\x64-windows"
 
@@ -83,12 +83,12 @@ jobs:
         shell: pwsh
         run: |
           $exeDir = "${{ env.BUILD_DIR }}\${{ matrix.config }}"
-          $windeploy = "${{ steps.install-qt.outputs.qtpath }}\bin\windeployqt.exe"
+          $windeploy = "$env:QT_ROOT_DIR\bin\windeployqt.exe"
           & $windeploy --release $exeDir\Soundlab.exe
           Copy-Item "$env:QWT_SRC\lib\qwt.dll" $exeDir -Force
           Copy-Item "C:\vcpkg\installed\x64-windows\bin\OpenAL32.dll" $exeDir -Force
           # qwt.dll links Qt5OpenGL, which windeployqt does not resolve via the exe only.
-          Copy-Item "${{ steps.install-qt.outputs.qtpath }}\bin\Qt5OpenGL.dll" $exeDir -Force
+          Copy-Item "$env:QT_ROOT_DIR\bin\Qt5OpenGL.dll" $exeDir -Force
 
       - name: Smoke test (launch the executable)
         shell: pwsh
