@@ -82,8 +82,9 @@ jobs:
           }
           # Assemble a clean include + lib layout for FindQwt.cmake
           $ErrorActionPreference = 'Stop'
-          $inc = "$qwtBase\install\include"
-          $libd = "$qwtBase\install\lib"
+          $qwtLayout = "$env:RUNNER_TEMP\qwt-layout"
+          $inc = "$qwtLayout\include"
+          $libd = "$qwtLayout\lib"
           [System.IO.Directory]::CreateDirectory($inc) | Out-Null
           [System.IO.Directory]::CreateDirectory($libd) | Out-Null
           Copy-Item "$qwtBase\src\*.h" $inc -Force
@@ -92,8 +93,8 @@ jobs:
             Write-Error "Qwt build did not produce the expected artifacts"
             exit 1
           }
-          Write-Host "Qwt installed to $qwtBase\install"
-          "QWT_DIR=$qwtBase\install" | Out-File -FilePath "$env:GITHUB_ENV" -Append
+          Write-Host "Qwt installed to $qwtLayout"
+          "QWT_DIR=$qwtLayout" | Out-File -FilePath "$env:GITHUB_ENV" -Append
 
       - name: Configure (CMake)
         shell: pwsh
