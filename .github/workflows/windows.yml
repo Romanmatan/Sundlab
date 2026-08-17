@@ -65,28 +65,49 @@ jobs:
       - name: Install OpenAL (openal-soft) via vcpkg
         shell: pwsh
         run: |
-          $cmds = Get-Command vcpkg.exe -ErrorAction SilentlyContinue
-          if (-not $cmds) {
-            Write-Error "vcpkg not found on PATH"
-            exit 1
+          $vcpkg = Get-Command vcpkg.exe -ErrorAction SilentlyContinue
+          if (-not $vcpkg) {
+            Write-Host "vcpkg.exe not on PATH; trying VCPKG_INSTALLATION_ROOT"
+            $root = $env:VCPKG_INSTALLATION_ROOT
+            if ([string]::IsNullOrWhiteSpace($root)) { Write-Error "Could not locate vcpkg"; exit 1 }
+            $vcpkgExe = Join-Path $root "vcpkg.exe"
+          } else {
+            $vcpkgExe = $vcpkg.Source
           }
-          $vcpkgExe = $cmds.Source
-          $vcpkgRoot = Split-Path $vcpkgExe -Parent
-          "VCPKG_REPO_ROOT=$vcpkgRoot" | Out-File -FilePath "$env:GITHUB_ENV" -Append
+          if (-not (Test-Path $vcpkgExe)) { Write-Error "vcpkg executable missing: $vcpkgExe"; exit 1 }
           & $vcpkgExe install openal-soft --triplet x64-windows
-          & $vcpkgExe integrate install
-          # Export the exact include/lib locations so CMake does not have to guess.
-          $tripletDir = Join-Path $vcpkgRoot "installed\x64-windows"
-          $alInc = Join-Path $tripletDir "include"
-          $alLib = Join-Path $tripletDir "lib\OpenAL32.lib"
-          if (-not (Test-Path (Join-Path $alInc "AL\al.h")) -or -not (Test-Path $alLib)) {
-            Write-Error "OpenAL artifacts not found under $tripletDir"
+          if ($LASTEXITCODE -ne 0) { Write-Error "vcpkg install failed with exit code $LASTEXITCODE"; exit 1 }
+          $base = Split-Path $vcpkgExe -Parent
+          Write-Host "vcpkg base: $base"
+          # Locate the installed include dir and import library (do not assume one layout).
+          $alInc = $null
+          $alLib = $null
+          Get-ChildItem -Path $base -Directory -Filter "*windows*" -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
+            $tryInc = Join-Path $_.FullName "include"
+            if (-not $alInc -and (Test-Path (Join-Path $tryInc "AL\al.h"))) { $alInc = $tryInc }
+            $tryLib = Join-Path $_.FullName "lib"
+            if (-not $alLib) {
+              $libs = Get-ChildItem -Path $tryLib -Filter "*.lib" -ErrorAction SilentlyContinue | Where-Object { $_.Name -match "OpenAL|openal" }
+              if ($libs) { $alLib = $libs[0].FullName }
+            }
+          }
+          if (-not $alInc -or -not $alLib) {
+            Write-Host "Searched under $base"
+            Get-ChildItem -Path $base -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.Name -match "al\.h|OpenAL" } | Select-Object -First 20 | ForEach-Object { Write-Host "  $($_.FullName)" }
+            Write-Error "OpenAL include/lib not located under $base"
             exit 1
           }
           "OPENAL_INCLUDE_DIR=$alInc" | Out-File -FilePath "$env:GITHUB_ENV" -Append
           "OPENAL_LIBRARY=$alLib" | Out-File -FilePath "$env:GITHUB_ENV" -Append
+          $alBin = Join-Path (Split-Path $alLib -Parent | Split-Path -Parent) "bin"
+          if (-not (Test-Path (Join-Path $alBin "OpenAL32.dll"))) {
+            $dll = Get-ChildItem (Split-Path $alLib -Parent | Split-Path -Parent) -Filter "OpenAL*.dll" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($dll) { $alBin = $dll.DirectoryName }
+          }
+          "OPENAL_BIN_DIR=$alBin" | Out-File -FilePath "$env:GITHUB_ENV" -Append
           Write-Host "OpenAL include: $alInc"
           Write-Host "OpenAL library: $alLib"
+          Write-Host "OpenAL bin: $alBin"
 
       - name: Build Qwt from source (against installed Qt)
         shell: pwsh
@@ -119,16 +140,6 @@ jobs:
       - name: Configure (CMake)
         shell: pwsh
         run: |
-          $vcpkgRoot = $env:VCPKG_REPO_ROOT
-          if ([string]::IsNullOrWhiteSpace($vcpkgRoot)) {
-            $cmds = Get-Command vcpkg.exe -ErrorAction SilentlyContinue
-            if ($cmds) { $vcpkgRoot = Split-Path $cmds.Source -Parent }
-          }
-          if ([string]::IsNullOrWhiteSpace($vcpkgRoot)) {
-            Write-Error "Could not determine vcpkg root"
-            exit 1
-          }
-          "VCPKG_INSTALLED_DIR=$vcpkgRoot\installed\x64-windows" | Out-File -FilePath "$env:GITHUB_ENV" -Append
           cmake -S . -B ${{ env.BUILD_DIR }} `
             -DCMAKE_PREFIX_PATH="$env:QT_ROOT_DIR" `
             -DQWT_DIR="$env:QWT_DIR" `
@@ -143,20 +154,11 @@ jobs:
       - name: Deploy runtime (windeployqt) and bundle Qwt / OpenAL
         shell: pwsh
         run: |
-          $vcpkgRoot = $env:VCPKG_REPO_ROOT
-          if ([string]::IsNullOrWhiteSpace($vcpkgRoot)) {
-            $cmds = Get-Command vcpkg.exe -ErrorAction SilentlyContinue
-            if ($cmds) { $vcpkgRoot = Split-Path $cmds.Source -Parent }
-          }
-          if ([string]::IsNullOrWhiteSpace($vcpkgRoot)) {
-            Write-Error "Could not determine vcpkg root"
-            exit 1
-          }
           $exeDir = "${{ env.BUILD_DIR }}\${{ matrix.config }}"
           $windeploy = "$env:QT_ROOT_DIR\bin\windeployqt.exe"
           & $windeploy --release $exeDir\Soundlab.exe
           Copy-Item "$env:QWT_DIR\lib\qwt.dll" $exeDir -Force
-          Copy-Item "$vcpkgRoot\installed\x64-windows\bin\OpenAL32.dll" $exeDir -Force
+          Copy-Item "$env:OPENAL_BIN_DIR\OpenAL32.dll" $exeDir -Force
           # qwt.dll links Qt5OpenGL, which windeployqt does not resolve via the exe only.
           Copy-Item "$env:QT_ROOT_DIR\bin\Qt5OpenGL.dll" $exeDir -Force
 

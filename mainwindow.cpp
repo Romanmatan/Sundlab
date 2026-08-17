@@ -181,6 +181,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->tabWidget->tabBar()->setExpanding(true);
+    ui->tabWidget->tabBar()->setElideMode(Qt::ElideNone);
+    ui->tabWidget->tabBar()->setUsesScrollButtons(false);
     this->status = new QLabel(this);
     ui->statusbar->addWidget(status);
     this->status->setText("Готов.");
