@@ -1029,7 +1029,7 @@ p, li { white-space: pre-wrap; }
                    </size>
                   </property>
                   <property name="text">
-                   <string>Удалить  строку</string>
+                   <string>Удалить</string>
                   </property>
                  </widget>
                 </item>
