@@ -28,13 +28,13 @@ find_package(Qwt REQUIRED)
 include(FindPackageHandleStandardArgs)
 find_path(OPENAL_INCLUDE_DIR
     NAMES AL/al.h
-    HINTS "$ENV{OPENALDIR}" "${OPENALDIR}" "C:/Program Files (x86)/OpenAL"
+    HINTS "$ENV{OPENALDIR}" "${OPENALDIR}" "${VCPKG_INSTALLED_DIR}" "C:/vcpkg/installed/x64-windows" "C:/Program Files (x86)/OpenAL"
     PATH_SUFFIXES include
     DOC "OpenAL include directory"
 )
 find_library(OPENAL_LIBRARY
     NAMES OpenAL32 openal32 openal
-    HINTS "$ENV{OPENALDIR}" "${OPENALDIR}" "C:/Program Files (x86)/OpenAL"
+    HINTS "$ENV{OPENALDIR}" "${OPENALDIR}" "${VCPKG_INSTALLED_DIR}" "C:/vcpkg/installed/x64-windows" "C:/Program Files (x86)/OpenAL"
     PATH_SUFFIXES lib
     DOC "OpenAL library"
 )

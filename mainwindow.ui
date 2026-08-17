@@ -18,11 +18,11 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>Оценка частотных параметров слуха</string>
+        <string>Частотные параметры</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_25">
         <item>
@@ -66,6 +66,12 @@
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="FrequencyBox">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="decimals">
                <number>1</number>
               </property>
@@ -147,6 +153,12 @@
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="LoudnessBox">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="decimals">
                <number>1</number>
               </property>
@@ -391,7 +403,7 @@ p, li { white-space: pre-wrap; }
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Оценка временных параметров слуха</string>
+        <string>Временные параметры</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_11">
         <item>
@@ -1058,7 +1070,7 @@ p, li { white-space: pre-wrap; }
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>Оценка разрешающей способности слуха</string>
+        <string>Разрешающая способность</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_22">
         <item>
@@ -1096,7 +1108,7 @@ p, li { white-space: pre-wrap; }
               <property name="minimumSize">
                <size>
                 <width>60</width>
-                <height>0</height>
+                <height>25</height>
                </size>
               </property>
               <property name="decimals">
@@ -1159,7 +1171,7 @@ p, li { white-space: pre-wrap; }
               <property name="minimumSize">
                <size>
                 <width>60</width>
-                <height>0</height>
+                <height>25</height>
                </size>
               </property>
               <property name="decimals">
@@ -1223,7 +1235,7 @@ p, li { white-space: pre-wrap; }
                 <property name="minimumSize">
                  <size>
                   <width>49</width>
-                  <height>0</height>
+                  <height>25</height>
                  </size>
                 </property>
                 <property name="maximumSize">
@@ -1265,6 +1277,12 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QLineEdit" name="LoudnessEdit_3">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>80</width>
@@ -1310,6 +1328,12 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QLineEdit" name="ModFreqEdit_3">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>80</width>

@@ -1,4 +1,4 @@
-name: Windows CI
+﻿name: Windows CI
 
 on:
   push:
@@ -65,8 +65,28 @@ jobs:
       - name: Install OpenAL (openal-soft) via vcpkg
         shell: pwsh
         run: |
-          vcpkg install openal-soft --triplet x64-windows
-          vcpkg integrate install
+          $cmds = Get-Command vcpkg.exe -ErrorAction SilentlyContinue
+          if (-not $cmds) {
+            Write-Error "vcpkg not found on PATH"
+            exit 1
+          }
+          $vcpkgExe = $cmds.Source
+          $vcpkgRoot = Split-Path $vcpkgExe -Parent
+          "VCPKG_REPO_ROOT=$vcpkgRoot" | Out-File -FilePath "$env:GITHUB_ENV" -Append
+          & $vcpkgExe install openal-soft --triplet x64-windows
+          & $vcpkgExe integrate install
+          # Export the exact include/lib locations so CMake does not have to guess.
+          $tripletDir = Join-Path $vcpkgRoot "installed\x64-windows"
+          $alInc = Join-Path $tripletDir "include"
+          $alLib = Join-Path $tripletDir "lib\OpenAL32.lib"
+          if (-not (Test-Path (Join-Path $alInc "AL\al.h")) -or -not (Test-Path $alLib)) {
+            Write-Error "OpenAL artifacts not found under $tripletDir"
+            exit 1
+          }
+          "OPENAL_INCLUDE_DIR=$alInc" | Out-File -FilePath "$env:GITHUB_ENV" -Append
+          "OPENAL_LIBRARY=$alLib" | Out-File -FilePath "$env:GITHUB_ENV" -Append
+          Write-Host "OpenAL include: $alInc"
+          Write-Host "OpenAL library: $alLib"
 
       - name: Build Qwt from source (against installed Qt)
         shell: pwsh
@@ -99,11 +119,21 @@ jobs:
       - name: Configure (CMake)
         shell: pwsh
         run: |
+          $vcpkgRoot = $env:VCPKG_REPO_ROOT
+          if ([string]::IsNullOrWhiteSpace($vcpkgRoot)) {
+            $cmds = Get-Command vcpkg.exe -ErrorAction SilentlyContinue
+            if ($cmds) { $vcpkgRoot = Split-Path $cmds.Source -Parent }
+          }
+          if ([string]::IsNullOrWhiteSpace($vcpkgRoot)) {
+            Write-Error "Could not determine vcpkg root"
+            exit 1
+          }
+          "VCPKG_INSTALLED_DIR=$vcpkgRoot\installed\x64-windows" | Out-File -FilePath "$env:GITHUB_ENV" -Append
           cmake -S . -B ${{ env.BUILD_DIR }} `
-            -DCMAKE_BUILD_TYPE=${{ matrix.config }} `
             -DCMAKE_PREFIX_PATH="$env:QT_ROOT_DIR" `
             -DQWT_DIR="$env:QWT_DIR" `
-            -DOPENALDIR="C:\vcpkg\installed\x64-windows"
+            -DOPENAL_INCLUDE_DIR="$env:OPENAL_INCLUDE_DIR" `
+            -DOPENAL_LIBRARY="$env:OPENAL_LIBRARY"
 
       - name: Build
         shell: pwsh
@@ -113,11 +143,20 @@ jobs:
       - name: Deploy runtime (windeployqt) and bundle Qwt / OpenAL
         shell: pwsh
         run: |
+          $vcpkgRoot = $env:VCPKG_REPO_ROOT
+          if ([string]::IsNullOrWhiteSpace($vcpkgRoot)) {
+            $cmds = Get-Command vcpkg.exe -ErrorAction SilentlyContinue
+            if ($cmds) { $vcpkgRoot = Split-Path $cmds.Source -Parent }
+          }
+          if ([string]::IsNullOrWhiteSpace($vcpkgRoot)) {
+            Write-Error "Could not determine vcpkg root"
+            exit 1
+          }
           $exeDir = "${{ env.BUILD_DIR }}\${{ matrix.config }}"
           $windeploy = "$env:QT_ROOT_DIR\bin\windeployqt.exe"
           & $windeploy --release $exeDir\Soundlab.exe
           Copy-Item "$env:QWT_DIR\lib\qwt.dll" $exeDir -Force
-          Copy-Item "C:\vcpkg\installed\x64-windows\bin\OpenAL32.dll" $exeDir -Force
+          Copy-Item "$vcpkgRoot\installed\x64-windows\bin\OpenAL32.dll" $exeDir -Force
           # qwt.dll links Qt5OpenGL, which windeployqt does not resolve via the exe only.
           Copy-Item "$env:QT_ROOT_DIR\bin\Qt5OpenGL.dll" $exeDir -Force
 
