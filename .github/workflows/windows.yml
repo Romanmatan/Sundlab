@@ -65,6 +65,7 @@ jobs:
       - name: Install OpenAL (openal-soft) via vcpkg
         shell: pwsh
         run: |
+          Remove-Item Env:\VCPKG_ROOT -ErrorAction SilentlyContinue
           $vcpkg = Get-Command vcpkg.exe -ErrorAction SilentlyContinue
           if (-not $vcpkg) {
             Write-Host "vcpkg.exe not on PATH; trying VCPKG_INSTALLATION_ROOT"
@@ -75,8 +76,15 @@ jobs:
             $vcpkgExe = $vcpkg.Source
           }
           if (-not (Test-Path $vcpkgExe)) { Write-Error "vcpkg executable missing: $vcpkgExe"; exit 1 }
-          & $vcpkgExe install openal-soft --triplet x64-windows
-          if ($LASTEXITCODE -ne 0) { Write-Error "vcpkg install failed with exit code $LASTEXITCODE"; exit 1 }
+          $attempt = 0
+          $done = $false
+          while (-not $done -and $attempt -lt 4) {
+            $attempt++
+            & $vcpkgExe install openal-soft --triplet x64-windows
+            if ($LASTEXITCODE -eq 0) { $done = $true }
+            elseif ($attempt -lt 4) { Write-Host "vcpkg install attempt $attempt failed; retrying in 5s..."; Start-Sleep -Seconds 5 }
+          }
+          if (-not $done) { Write-Error "vcpkg install failed after $attempt attempts"; exit 1 }
           $base = Split-Path $vcpkgExe -Parent
           Write-Host "vcpkg base: $base"
           # Locate the installed include dir and import library (do not assume one layout).
