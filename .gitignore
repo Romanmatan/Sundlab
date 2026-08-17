@@ -55,6 +55,7 @@ Makefile.Release
 *.exp
 
 # IDE / OS
+.vscode/
 *.swp
 *.user
 Thumbs.db

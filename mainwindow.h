@@ -8,6 +8,7 @@
 #include "player.h"
 #include "QVector"
 #include <QSettings>
+#include "colorednoise.h"
 
 
 
@@ -15,12 +16,15 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-#define sample_rate 44100
+#define sample_rate 44100.0
 
 struct tab1p
 {
     double frequency;
     double loudness;
+    double azimuth;
+    double rotfreq;
+    bool rotation;
 };
 struct tab2p
 {
@@ -49,10 +53,8 @@ struct pannelp
     double signalduration;
     bool left;
     bool right;
+    bool smooth;
     double loudmultipler;
-    double azimuth;
-    double distance;
-    bool rotation;
     bool addnoise;
     bool addinterf;
     double snr;
@@ -61,7 +63,7 @@ struct pannelp
     QVector<double> noisebands;
     QVector<double> noiseampls;
     QVector<double> interffreqs;
-    QVector<double> interflevels;
+    QVector<double> interfphases;
     QVector<double> interfampls;
 };
 
@@ -73,7 +75,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     QLabel *status;
-    //PlayThread alplayer;
+    bool LoadResponse(QString name);
     ~MainWindow();
 
 signals:
@@ -146,8 +148,45 @@ private slots:
 
     void on_FMBox_toggled(bool checked);
 
+    void on_Freq2Edit_2_editingFinished();
+
+    void on_Duration1Edit_2_textChanged(const QString &arg1);
+
+    void on_Periods1Edit_2_textChanged(const QString &arg1);
+
+    void on_Time1Edit_2_textChanged(const QString &arg1);
+
+    void on_Freq1Edit_2_textChanged(const QString &arg1);
+
+    void on_HearButton_2_clicked();
+
+    void on_HearButton_3_clicked();
+
+    void on_PeriodSeqButton_2_clicked();
+
+    void on_TimeSeqButton_2_clicked();
+
+    void on_LoudSeqButton_2_clicked();
+
+    void on_AMSeqButton_clicked();
+
+    void on_PMSeqButton_clicked();
+
+    void on_FMSeqButton_3_clicked();
+
+    void on_SaveResultButton_clicked();
+
+    void on_SaveResultButton_2_clicked();
+
+    void on_SaveResultButton_3_clicked();
+
+    void on_DeleteStringButton_2_clicked();
+
+    void on_DeleteStringButton_3_clicked();
+
 public slots:
         void GetErr(QString err);
+        void DFinish(QString err);
 
 
 private:
@@ -159,21 +198,24 @@ private:
     pannelp *pannelparams;
     QSettings *settings;
     QString err;
+    QString lastPath;
     void LoadSettings();
     void SaveSettings();
     bool stopflag;
     bool stopflag2;
     bool stopflag3;
     bool switch1;
-    //PlayThread *plth;
-    //QThread *thread;
+    vector<double> freqs;
+    vector<double> values;
+    bool dialog_finished;
     void RefreshFromUi1(tab1p *p1);
     void RefreshFromUi2(tab2p *p2);
     void RefreshFromUi3(tab3p *p3);
     void RefreshPannel(pannelp *pn);
-    void Play_buffer(short *samples, ALsizei buf_size, double loudnessmult, double loudness, double azimuth, double distance, ALenum format);
+    void GetNoiseVector(vector<noise_param> *noises);
+    void GetInterfVector(vector<interf_param> *interf);
+    void tab3_sequences(QString type);
+    void Play_buffer(short *samples, ALsizei buf_size, double azimuth, double distance, double rotfreq, ALenum format, double volume);
     void StopThreads();
-    //bool ThreadComplete = 0;
-
 };
 #endif // MAINWINDOW_H

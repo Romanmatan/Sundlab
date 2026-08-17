@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 project(Soundlab
     VERSION 1.0.0
     DESCRIPTION "SoundLab - trovide an lab work for signal analysis"
-    LANGUAGES CXX
+    LANGUAGES C CXX
 )
 
 set(CMAKE_CXX_STANDARD 11)
@@ -49,12 +49,19 @@ add_executable(Soundlab WIN32
     fftwindow.h
     player.cpp
     player.h
+    create_signal.cpp
+    create_signal.h
+    colorednoise.cpp
+    colorednoise.h
+    fft.c
+    fft.h
     mainwindow.ui
     fftwindow.ui
     resources/resources.qrc
 )
 
 target_include_directories(Soundlab PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
     ${QWT_INCLUDE_DIRS}
     ${OPENAL_INCLUDE_DIR}
 )
@@ -72,7 +79,7 @@ target_link_libraries(Soundlab PRIVATE
 target_link_libraries(Soundlab PRIVATE ole32)
 
 if(MSVC)
-    target_compile_options(Soundlab PRIVATE /W3)
+    target_compile_options(Soundlab PRIVATE /W3 /utf-8)
     add_definitions(-D_SCL_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_WARNINGS)
 endif()
 

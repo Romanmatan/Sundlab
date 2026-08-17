@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1137</width>
-    <height>684</height>
+    <width>1441</width>
+    <height>784</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -309,17 +309,17 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-weight:600;&quot;&gt;1.&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt;&quot;&gt;       &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-weight:600;&quot;&gt;Оценка частотного диапазона слышимых звуков.&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-style:italic;&quot;&gt;1. Установите громкость звукового сигнала на уровне 60-80 дБ (необходимо проверить, чтобы звук был отчетливо слышен, но в то же время не создавал болевого ощущения, так как болевой порог на данных частотах находится на уровне 100 дБ). Множитель громкости устанавливается один раз в начале работы, таким образом, чтобы скомпенсировать коэффициент усиления звуковой карты компьютера. Для его установки требуется произвести измерение громкости с помощью дополнительного оборудования.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-style:italic;&quot;&gt;2. Установите значение длительности сигнала не менее 5 секунд.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-style:italic;&quot;&gt;3. Запуск производится нажатием кнопок &amp;quot;последовательность&amp;quot;. Программа будет воспроизводить звуковой сигнал с частотой от 15 Гц до 25 Гц, с шагом 1 Гц и от 14 кГц до 21 кГц с шагом 500 Гц &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-style:italic;&quot;&gt;4. При переходе между оценкой нижней границы частоты и оценкой верхней границы частоты, нажмите кнопки &amp;quot;звук уже слышен&amp;quot; и &amp;quot;звук уже не слышен&amp;quot; соответственно.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-weight:600;&quot;&gt;1.&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt;&quot;&gt;       &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-weight:600;&quot;&gt;Определение порога слышимости&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-style:italic;&quot;&gt;1. установите заданное значение частоты сигнала&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-style:italic;&quot;&gt;2. Установите значение длительности сигнала не менее 5 секунд.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-style:italic;&quot;&gt;3. Последовательно изменяя громкость с шагом 0.8 дБ. зафиксируйте момент, когда звук стал слышимым нажатием кнопки &amp;quot;звук уже слышен&amp;quot;. Можно воспользоваться кнопкой &amp;quot;последовательность 0-50 дБ.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-style:italic;&quot;&gt;4. Проделайте то же самое для других значений частот, постройте кривые слышимости.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman','serif'; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt;Проделайте первый и второй эксперименты отдельно для левого и правого уха, установив отметку &amp;quot;только правый канал&amp;quot; или &amp;quot;только левый канал&amp;quot;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-weight:600;&quot;&gt;1.&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt;&quot;&gt;       &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-weight:600;&quot;&gt;Оценка частотного диапазона слышимых звуков.&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-style:italic;&quot;&gt;1. Установите громкость звукового сигнала на уровне 60-80 дБ (необходимо проверить, чтобы звук был отчетливо слышен, но в то же время не создавал болевого ощущения, так как болевой порог на данных частотах находится на уровне 100 дБ). Множитель громкости устанавливается один раз в начале работы, таким образом, чтобы скомпенсировать коэффициент усиления звуковой карты компьютера. Для его установки требуется произвести измерение громкости с помощью дополнительного оборудования.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-style:italic;&quot;&gt;2. Установите значение длительности сигнала не менее 5 секунд.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-style:italic;&quot;&gt;3. Запуск производится нажатием кнопок &amp;quot;последовательность&amp;quot;. Программа будет воспроизводить звуковой сигнал с частотой от 15 Гц до 25 Гц, с шагом 1 Гц и от 14 кГц до 21 кГц с шагом 500 Гц &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-style:italic;&quot;&gt;4. При переходе между оценкой нижней границы частоты и оценкой верхней границы частоты, нажмите кнопки &amp;quot;звук уже слышен&amp;quot; и &amp;quot;звук уже не слышен&amp;quot; соответственно.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-weight:600;&quot;&gt;1.&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt;&quot;&gt;       &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-weight:600;&quot;&gt;Определение порога слышимости&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-style:italic;&quot;&gt;1. установите заданное значение частоты сигнала&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-style:italic;&quot;&gt;2. Установите значение длительности сигнала не менее 5 секунд.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-style:italic;&quot;&gt;3. Последовательно изменяя громкость с шагом 0.8 дБ. зафиксируйте момент, когда звук стал слышимым нажатием кнопки &amp;quot;звук уже слышен&amp;quot;. Можно воспользоваться кнопкой &amp;quot;последовательность 0-50 дБ.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-style:italic;&quot;&gt;4. Проделайте то же самое для других значений частот, постройте кривые слышимости.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt;Проделайте первый и второй эксперименты отдельно для левого и правого уха, установив отметку &amp;quot;только правый канал&amp;quot; или &amp;quot;только левый канал&amp;quot;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -420,6 +420,12 @@ p, li { white-space: pre-wrap; }
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="Duration2Box_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="decimals">
                <number>1</number>
               </property>
@@ -447,6 +453,12 @@ p, li { white-space: pre-wrap; }
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="Periods2Box_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="decimals">
                <number>1</number>
               </property>
@@ -491,6 +503,12 @@ p, li { white-space: pre-wrap; }
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="Loudness2Box_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="decimals">
                <number>1</number>
               </property>
@@ -542,6 +560,12 @@ p, li { white-space: pre-wrap; }
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="Time2Box_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="decimals">
                <number>1</number>
               </property>
@@ -604,9 +628,15 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QLineEdit" name="Duration1Edit_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>80</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -636,10 +666,16 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="Duration1Edit_3">
+               <widget class="QLineEdit" name="Periods1Edit_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>80</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -683,9 +719,15 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QLineEdit" name="Loudness1Edit_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>80</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -722,9 +764,15 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QLineEdit" name="Time1Edit_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>80</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -781,9 +829,15 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QLineEdit" name="Freq1Edit_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>80</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -820,9 +874,15 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QLineEdit" name="Freq2Edit_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>80</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -871,7 +931,7 @@ p, li { white-space: pre-wrap; }
                <number>20</number>
               </property>
               <item row="0" column="1">
-               <widget class="QPushButton" name="pushButton_8">
+               <widget class="QPushButton" name="HearButton_2">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -884,7 +944,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="0" column="0">
-               <widget class="QPushButton" name="pushButton_12">
+               <widget class="QPushButton" name="PeriodSeqButton_2">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -897,7 +957,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QPushButton" name="pushButton_9">
+               <widget class="QPushButton" name="TimeSeqButton_2">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -910,7 +970,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QPushButton" name="pushButton_11">
+               <widget class="QPushButton" name="LoudSeqButton_2">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -1149,7 +1209,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>50</width>
+                  <width>90</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -1168,7 +1228,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>80</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -1207,7 +1267,7 @@ p, li { white-space: pre-wrap; }
                <widget class="QLineEdit" name="LoudnessEdit_3">
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>80</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -1231,6 +1291,18 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QLabel" name="label_54">
+                <property name="minimumSize">
+                 <size>
+                  <width>100</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>110</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>Частота модуляции:</string>
                 </property>
@@ -1240,7 +1312,7 @@ p, li { white-space: pre-wrap; }
                <widget class="QLineEdit" name="ModFreqEdit_3">
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>80</width>
                   <height>16777215</height>
                  </size>
                 </property>
@@ -1296,7 +1368,7 @@ p, li { white-space: pre-wrap; }
                <number>20</number>
               </property>
               <item row="1" column="0">
-               <widget class="QPushButton" name="pushButton_25">
+               <widget class="QPushButton" name="AMSeqButton">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -1304,12 +1376,13 @@ p, li { white-space: pre-wrap; }
                  </size>
                 </property>
                 <property name="text">
-                 <string>Последовательность 80 мс. - 0 мс.</string>
+                 <string>АМ: Последовательность:
+ глубина модуляции 0.25 - 0</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="0">
-               <widget class="QPushButton" name="pushButton_26">
+               <widget class="QPushButton" name="FMSeqButton_3">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -1322,7 +1395,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QPushButton" name="pushButton_24">
+               <widget class="QPushButton" name="HearButton_3">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -1330,12 +1403,26 @@ p, li { white-space: pre-wrap; }
                  </size>
                 </property>
                 <property name="text">
-                 <string>Звук уже не слышен</string>
+                 <string>Зафиксировать значение</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QPushButton" name="PMSeqButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>80</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>ФМ: Последовательность:
+ глубина модуляции 0.25 - 0</string>
                 </property>
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QPushButton" name="pushButton_23">
+               <widget class="QPushButton" name="NotHearButton_2">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -1344,19 +1431,6 @@ p, li { white-space: pre-wrap; }
                 </property>
                 <property name="text">
                  <string>Звук уже слышен</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QPushButton" name="pushButton_28">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>80</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Последовательность 50 дБ - 0 дБ</string>
                 </property>
                </widget>
               </item>
@@ -1505,154 +1579,19 @@ p, li { white-space: pre-wrap; }
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="0">
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
       <item>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="2" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout_12">
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <item>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="1" column="2">
-           <widget class="QLabel" name="label_12">
-            <property name="text">
-             <string>Уровень помех, дБ:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>Ширина полосы шума, Гц:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_45">
-            <property name="text">
-             <string>Относительные амплитуды шума</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QLineEdit" name="InterfRelampEdit"/>
-          </item>
-          <item row="0" column="2">
-           <widget class="QLabel" name="label_10">
-            <property name="text">
-             <string>Частоты гармонических помех, Гц:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <widget class="QLineEdit" name="InterfLevelEdit"/>
-          </item>
-          <item row="1" column="4">
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <item>
-             <widget class="QLabel" name="label_8">
-              <property name="text">
-               <string>Азимут источника звука:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="AzimuthEdit">
-              <property name="minimumSize">
-               <size>
-                <width>40</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>40</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>0</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_13">
-              <property name="text">
-               <string>град.</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_14">
-              <property name="text">
-               <string>Расстояние до источника звука: </string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="DistanceEdit">
-              <property name="minimumSize">
-               <size>
-                <width>40</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>40</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>1000</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_15">
-              <property name="text">
-               <string>м.</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="RotationBox">
-              <property name="text">
-               <string>Вращение</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_14">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>Центральные частоты шума, Гц:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLineEdit" name="InterfFreqEdit"/>
-          </item>
-          <item row="2" column="2">
-           <widget class="QLabel" name="label_46">
-            <property name="text">
-             <string>Относительные амплитуды помех</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="NoisesFreqEdit"/>
-          </item>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item row="0" column="4">
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
@@ -1672,13 +1611,13 @@ p, li { white-space: pre-wrap; }
              <widget class="QLineEdit" name="DurationEdit">
               <property name="minimumSize">
                <size>
-                <width>40</width>
-                <height>0</height>
+                <width>60</width>
+                <height>25</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>40</width>
+                <width>80</width>
                 <height>20</height>
                </size>
               </property>
@@ -1731,13 +1670,13 @@ p, li { white-space: pre-wrap; }
              <widget class="QLineEdit" name="LoudnessMultEdit">
               <property name="minimumSize">
                <size>
-                <width>40</width>
-                <height>0</height>
+                <width>60</width>
+                <height>25</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>40</width>
+                <width>80</width>
                 <height>20</height>
                </size>
               </property>
@@ -1746,10 +1685,200 @@ p, li { white-space: pre-wrap; }
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QCheckBox" name="SmoothBox">
+              <property name="text">
+               <string>сглаживание фронта</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="CompenseBox">
+              <property name="text">
+               <string>Компенсировать АЧХ</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="NoisesBandEdit"/>
+          <item row="2" column="2">
+           <widget class="QLabel" name="label_46">
+            <property name="text">
+             <string>Относительные амплитуды помех</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Частоты гармонических помех, Гц:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Уровень помех, дБ:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_8">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Азимут источника звука:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="AzimuthEdit">
+              <property name="minimumSize">
+               <size>
+                <width>60</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>80</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_13">
+              <property name="text">
+               <string>град.</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_14">
+              <property name="minimumSize">
+               <size>
+                <width>145</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Расстояние до источника звука: </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="DistanceEdit">
+              <property name="minimumSize">
+               <size>
+                <width>60</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>80</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>1000</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_15">
+              <property name="text">
+               <string>м.</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="RotationBox">
+              <property name="text">
+               <string>Вращение</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_33">
+              <property name="text">
+               <string>Частота вращения:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="RotFreqEdit">
+              <property name="minimumSize">
+               <size>
+                <width>40</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>60</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>1</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_14">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLineEdit" name="InterfFreqEdit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QLineEdit" name="InterfRelampEdit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLineEdit" name="InterfLevelEdit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="2" column="4">
            <layout class="QHBoxLayout" name="horizontalLayout_25">
@@ -1782,9 +1911,15 @@ p, li { white-space: pre-wrap; }
             </item>
             <item>
              <widget class="QLineEdit" name="SNREdit">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="maximumSize">
                <size>
-                <width>40</width>
+                <width>70</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -1815,9 +1950,15 @@ p, li { white-space: pre-wrap; }
             </item>
             <item>
              <widget class="QLineEdit" name="SInterfEdit">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="maximumSize">
                <size>
-                <width>40</width>
+                <width>70</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -1828,8 +1969,94 @@ p, li { white-space: pre-wrap; }
             </item>
            </layout>
           </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="NoisesRelampEdit"/>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_20">
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_18">
+            <property name="rightMargin">
+             <number>10</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_21">
+              <property name="rightMargin">
+               <number>10</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_45">
+                <property name="text">
+                 <string>Относительные амплитуды шума</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="NoisesRelampEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_17">
+              <property name="rightMargin">
+               <number>10</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>Ширина полосы шума, Гц:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="NoisesBandEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_16">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>Центральные частоты шума, Гц:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="NoisesFreqEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
